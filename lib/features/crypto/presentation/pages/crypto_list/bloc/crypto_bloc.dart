@@ -80,7 +80,6 @@ class CryptoBloc extends Bloc<CryptoEvent, CryptoState> {
         SnackBarHelper.showErrorSnackBar(
           message: 'Error loading more data:\n${result.error.toString()}',
         );
-      // emit(GetCryptoListError(failure: result.error));
       default:
     }
   }

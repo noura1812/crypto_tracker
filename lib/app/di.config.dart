@@ -30,8 +30,13 @@ import '../features/crypto/domain/usecases/edit_wish_list_use_case.dart'
     as _i14;
 import '../features/crypto/domain/usecases/get_crypto_list_use_case.dart'
     as _i15;
-import '../features/crypto/presentation/bloc/crypto_bloc.dart' as _i16;
-import 'di.dart' as _i17;
+import '../features/crypto/domain/usecases/get_crypto_wish_list_usecase.dart'
+    as _i16;
+import '../features/crypto/presentation/pages/crypto_list/bloc/crypto_bloc.dart'
+    as _i17;
+import '../features/crypto/presentation/pages/crypto_wishlist/bloc/crypto_wishlist_bloc.dart'
+    as _i18;
+import 'di.dart' as _i19;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -68,10 +73,16 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i14.EditWishListUseCase(gh<_i11.CryptoRepository>()));
     gh.factory<_i15.GetCryptoListUseCase>(
         () => _i15.GetCryptoListUseCase(gh<_i11.CryptoRepository>()));
-    gh.factory<_i16.CryptoBloc>(
-        () => _i16.CryptoBloc(gh<_i15.GetCryptoListUseCase>()));
+    gh.factory<_i16.GetCryptoWishListUseCase>(
+        () => _i16.GetCryptoWishListUseCase(gh<_i11.CryptoRepository>()));
+    gh.factory<_i17.CryptoBloc>(
+        () => _i17.CryptoBloc(gh<_i15.GetCryptoListUseCase>()));
+    gh.lazySingleton<_i18.CryptoWishlistBloc>(() => _i18.CryptoWishlistBloc(
+          gh<_i16.GetCryptoWishListUseCase>(),
+          gh<_i14.EditWishListUseCase>(),
+        ));
     return this;
   }
 }
 
-class _$RegisterModule extends _i17.RegisterModule {}
+class _$RegisterModule extends _i19.RegisterModule {}

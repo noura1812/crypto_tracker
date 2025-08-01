@@ -56,4 +56,14 @@ class CryptoRepositoryImpl implements CryptoRepository {
       return Error(error, data: data);
     }
   }
+
+  @override
+  Future<AsyncResult<List<CryptoEntity>>> getCryptoWishlist() async {
+    try {
+      var data = await _cryptoLocalDataSource.getWishlist();
+      return Data(data);
+    } catch (e) {
+      return Error(ErrorHandler.handleError(e));
+    }
+  }
 }

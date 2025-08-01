@@ -6,5 +6,6 @@ abstract class CryptoRepository {
   Future<AsyncResult<List<CryptoEntity>>> getCryptoList(
     CryptoParameters parameters,
   );
+  Future<AsyncResult<List<CryptoEntity>>> getCryptoWishlist();
   Future<AsyncResult<void>> editWishlist(String id, {bool add = true});
 }
