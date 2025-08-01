@@ -6,3 +6,7 @@ abstract class CryptoEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class GetCryptoList extends CryptoEvent {}
+
+class LoadNextPage extends CryptoEvent {}

@@ -20,11 +20,11 @@ CryptoParameters _$CryptoParametersFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CryptoParameters {
-  @JsonKey(includeIfNull: false)
+  @JsonKey(includeIfNull: false, name: 'vs_currency')
   String? get vsCurrency => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   String? get order => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
+  @JsonKey(includeIfNull: false, name: 'per_page')
   int get perPage => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   int get page => throw _privateConstructorUsedError;
@@ -42,9 +42,9 @@ abstract class $CryptoParametersCopyWith<$Res> {
       _$CryptoParametersCopyWithImpl<$Res, CryptoParameters>;
   @useResult
   $Res call(
-      {@JsonKey(includeIfNull: false) String? vsCurrency,
+      {@JsonKey(includeIfNull: false, name: 'vs_currency') String? vsCurrency,
       @JsonKey(includeIfNull: false) String? order,
-      @JsonKey(includeIfNull: false) int perPage,
+      @JsonKey(includeIfNull: false, name: 'per_page') int perPage,
       @JsonKey(includeIfNull: false) int page});
 }
 
@@ -96,9 +96,9 @@ abstract class _$$CryptoParametersImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(includeIfNull: false) String? vsCurrency,
+      {@JsonKey(includeIfNull: false, name: 'vs_currency') String? vsCurrency,
       @JsonKey(includeIfNull: false) String? order,
-      @JsonKey(includeIfNull: false) int perPage,
+      @JsonKey(includeIfNull: false, name: 'per_page') int perPage,
       @JsonKey(includeIfNull: false) int page});
 }
 
@@ -143,22 +143,24 @@ class __$$CryptoParametersImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CryptoParametersImpl implements _CryptoParameters {
   const _$CryptoParametersImpl(
-      {@JsonKey(includeIfNull: false) this.vsCurrency,
+      {@JsonKey(includeIfNull: false, name: 'vs_currency')
+      this.vsCurrency = 'usd',
       @JsonKey(includeIfNull: false) this.order,
-      @JsonKey(includeIfNull: false) this.perPage = AppConstants.perPage,
+      @JsonKey(includeIfNull: false, name: 'per_page')
+      this.perPage = AppConstants.perPage,
       @JsonKey(includeIfNull: false) this.page = 1});
 
   factory _$CryptoParametersImpl.fromJson(Map<String, dynamic> json) =>
       _$$CryptoParametersImplFromJson(json);
 
   @override
-  @JsonKey(includeIfNull: false)
+  @JsonKey(includeIfNull: false, name: 'vs_currency')
   final String? vsCurrency;
   @override
   @JsonKey(includeIfNull: false)
   final String? order;
   @override
-  @JsonKey(includeIfNull: false)
+  @JsonKey(includeIfNull: false, name: 'per_page')
   final int perPage;
   @override
   @JsonKey(includeIfNull: false)
@@ -203,22 +205,23 @@ class _$CryptoParametersImpl implements _CryptoParameters {
 
 abstract class _CryptoParameters implements CryptoParameters {
   const factory _CryptoParameters(
-      {@JsonKey(includeIfNull: false) final String? vsCurrency,
+      {@JsonKey(includeIfNull: false, name: 'vs_currency')
+      final String? vsCurrency,
       @JsonKey(includeIfNull: false) final String? order,
-      @JsonKey(includeIfNull: false) final int perPage,
+      @JsonKey(includeIfNull: false, name: 'per_page') final int perPage,
       @JsonKey(includeIfNull: false) final int page}) = _$CryptoParametersImpl;
 
   factory _CryptoParameters.fromJson(Map<String, dynamic> json) =
       _$CryptoParametersImpl.fromJson;
 
   @override
-  @JsonKey(includeIfNull: false)
+  @JsonKey(includeIfNull: false, name: 'vs_currency')
   String? get vsCurrency;
   @override
   @JsonKey(includeIfNull: false)
   String? get order;
   @override
-  @JsonKey(includeIfNull: false)
+  @JsonKey(includeIfNull: false, name: 'per_page')
   int get perPage;
   @override
   @JsonKey(includeIfNull: false)

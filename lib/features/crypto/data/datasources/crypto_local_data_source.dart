@@ -18,6 +18,8 @@ class CryptoLocalDataSourceImpl implements CryptoLocalDataSource {
 
   @override
   Future<void> saveCryptoList(List<CryptoEntity> cryptoList) async {
+    final List<CryptoEntity> finalList = [];
+
     await _isar.writeTxn(() async {
       for (final newItem in cryptoList) {
         final existing =
@@ -30,8 +32,10 @@ class CryptoLocalDataSourceImpl implements CryptoLocalDataSource {
           newItem.isFav = existing.isFav;
         }
 
-        await _isar.cryptoEntitys.put(newItem);
+        finalList.add(newItem);
       }
+      await _isar.cryptoEntitys.clear();
+      await _isar.cryptoEntitys.putAll(finalList);
     });
   }
 

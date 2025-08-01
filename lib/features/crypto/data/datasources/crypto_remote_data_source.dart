@@ -18,9 +18,13 @@ class CryptoRemoteDataSourceImpl implements CryptoRemoteDataSource {
   Future<List<CryptoResponse>> getCryptoList(
     CryptoParameters parameters,
   ) async {
-    final response = await _dio.get(Endpoints.getCryptoList);
-    return (response.data as List)
-        .map((e) => CryptoResponse.fromJson(e))
-        .toList();
+    final response = await _dio.get(
+      Endpoints.getCryptoList,
+      queryParameters: parameters.toJson(),
+    );
+    // if (response.data['error'] != null) throw Exception(response.data['error']);
+    var data =
+        (response.data as List).map((e) => CryptoResponse.fromJson(e)).toList();
+    return data;
   }
 }

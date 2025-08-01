@@ -3,13 +3,14 @@ import 'package:crypto_tracker/features/crypto/domain/entities/crypto_entity.dar
 
 extension CryptoMapper on CryptoResponse {
   CryptoEntity toEntity() {
+    print('------>>>>>');
     return CryptoEntity(
       id: id ?? '',
       name: name ?? '',
       symbol: symbol ?? '',
       image: image ?? '',
-      currentPrice: (currentPrice ?? 0).toDouble(),
-      priceChangePercentage24h: priceChangePercentage24h ?? 0,
+      currentPrice: 1.5,
+      priceChangePercentage24h: 1.5,
     );
   }
 }

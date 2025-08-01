@@ -13,21 +13,14 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  bool _animationDone = false;
-
   @override
   Widget build(BuildContext context) {
-    if (_animationDone) {
-      context.goNamed(Routes.mainLayer);
-    }
     return Scaffold(
       backgroundColor: AppColors.mainColor,
       body: Center(
         child: SplashThumbnail(
           onEnd: () {
-            setState(() {
-              _animationDone = true;
-            });
+            context.goNamed(Routes.mainLayer);
           },
         ),
       ),

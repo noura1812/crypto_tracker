@@ -5,21 +5,21 @@ class CryptoResponse extends Equatable {
   final String? symbol;
   final String? name;
   final String? image;
-  final int? currentPrice;
-  final int? marketCap;
-  final int? marketCapRank;
-  final int? fullyDilutedValuation;
-  final int? totalVolume;
-  final int? high24h;
-  final int? low24h;
+  final double? currentPrice;
+  final double? marketCap;
+  final double? marketCapRank;
+  final double? fullyDilutedValuation;
+  final double? totalVolume;
+  final double? high24h;
+  final double? low24h;
   final double? priceChange24h;
   final double? priceChangePercentage24h;
   final double? marketCapChange24h;
   final double? marketCapChangePercentage24h;
-  final int? circulatingSupply;
-  final int? totalSupply;
-  final int? maxSupply;
-  final int? ath;
+  final double? circulatingSupply;
+  final double? totalSupply;
+  final double? maxSupply;
+  final double? ath;
   final double? athChangePercentage;
   final DateTime? athDate;
   final double? atl;
@@ -59,44 +59,96 @@ class CryptoResponse extends Equatable {
 
   factory CryptoResponse.fromJson(Map<String, dynamic> json) {
     return CryptoResponse(
-      id: json['id'] as String?,
-      symbol: json['symbol'] as String?,
-      name: json['name'] as String?,
-      image: json['image'] as String?,
-      currentPrice: json['current_price'] as int?,
-      marketCap: json['market_cap'] as int?,
-      marketCapRank: json['market_cap_rank'] as int?,
-      fullyDilutedValuation: json['fully_diluted_valuation'] as int?,
-      totalVolume: json['total_volume'] as int?,
-      high24h: json['high_24h'] as int?,
-      low24h: json['low_24h'] as int?,
-      priceChange24h: (json['price_change_24h'] as num?)?.toDouble(),
+      id: json['id'] is String ? json['id'] as String : null,
+      symbol: json['symbol'] is String ? json['symbol'] as String : null,
+      name: json['name'] is String ? json['name'] as String : null,
+      image: json['image'] is String ? json['image'] as String : null,
+
+      marketCap:
+          json['market_cap'] is num
+              ? (json['market_cap'] as num).toDouble()
+              : null,
+      marketCapRank:
+          json['market_cap_rank'] is num
+              ? (json['market_cap_rank'] as num).toDouble()
+              : null,
+      fullyDilutedValuation:
+          json['fully_diluted_valuation'] is num
+              ? (json['fully_diluted_valuation'] as num).toDouble()
+              : null,
+
+      currentPrice:
+          json['current_price'] is num
+              ? (json['current_price'] as num).toDouble()
+              : null,
+      totalVolume:
+          json['total_volume'] is num
+              ? (json['total_volume'] as num).toDouble()
+              : null,
+      high24h:
+          json['high_24h'] is num ? (json['high_24h'] as num).toDouble() : null,
+      low24h:
+          json['low_24h'] is num ? (json['low_24h'] as num).toDouble() : null,
+
+      priceChange24h:
+          json['price_change_24h'] is num
+              ? (json['price_change_24h'] as num).toDouble()
+              : null,
       priceChangePercentage24h:
-          (json['price_change_percentage_24h'] as num?)?.toDouble(),
-      marketCapChange24h: (json['market_cap_change_24h'] as num?)?.toDouble(),
+          json['price_change_percentage_24h'] is num
+              ? (json['price_change_percentage_24h'] as num).toDouble()
+              : null,
+
+      marketCapChange24h:
+          json['market_cap_change_24h'] is num
+              ? (json['market_cap_change_24h'] as num).toDouble()
+              : null,
       marketCapChangePercentage24h:
-          (json['market_cap_change_percentage_24h'] as num?)?.toDouble(),
-      circulatingSupply: json['circulating_supply'] as int?,
-      totalSupply: json['total_supply'] as int?,
-      maxSupply: json['max_supply'] as int?,
-      ath: json['ath'] as int?,
-      athChangePercentage: (json['ath_change_percentage'] as num?)?.toDouble(),
-      athDate:
-          json['ath_date'] == null
-              ? null
-              : DateTime.parse(json['ath_date'] as String),
-      atl: (json['atl'] as num?)?.toDouble(),
-      atlChangePercentage: (json['atl_change_percentage'] as num?)?.toDouble(),
+          json['market_cap_change_percentage_24h'] is num
+              ? (json['market_cap_change_percentage_24h'] as num).toDouble()
+              : null,
+
+      totalSupply:
+          json['total_supply'] is num
+              ? (json['total_supply'] as num).toDouble()
+              : null,
+      maxSupply:
+          json['max_supply'] is num
+              ? (json['max_supply'] as num).toDouble()
+              : null,
+
+      ath: json['ath'] is num ? (json['ath'] as num).toDouble() : null,
+      athChangePercentage:
+          json['ath_change_percentage'] is num
+              ? (json['ath_change_percentage'] as num).toDouble()
+              : null,
+
+      atl: json['atl'] is num ? (json['atl'] as num).toDouble() : null,
+      atlChangePercentage:
+          json['atl_change_percentage'] is num
+              ? (json['atl_change_percentage'] as num).toDouble()
+              : null,
+
       atlDate:
-          json['atl_date'] == null
-              ? null
-              : DateTime.parse(json['atl_date'] as String),
-      roi: json['roi'] as dynamic,
+          json['atl_date'] is String
+              ? DateTime.tryParse(json['atl_date'])
+              : null,
+
+      roi: json['roi'], // You can parse it further if needed
       lastUpdated:
-          json['last_updated'] == null
-              ? null
-              : DateTime.parse(json['last_updated'] as String),
+          json['last_updated'] is String
+              ? DateTime.tryParse(json['last_updated'])
+              : null,
     );
+  }
+
+  DateTime? tryParseDate(String? input) {
+    try {
+      if (input == null) return null;
+      return DateTime.parse(input);
+    } catch (_) {
+      return null;
+    }
   }
 
   Map<String, dynamic> toJson() => {

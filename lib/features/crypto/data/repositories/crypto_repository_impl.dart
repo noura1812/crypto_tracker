@@ -1,5 +1,4 @@
 import 'package:crypto_tracker/core/network/error/error_handler.dart';
-import 'package:crypto_tracker/core/network/error/failure.dart';
 import 'package:crypto_tracker/core/network/models/async_result.dart';
 import 'package:crypto_tracker/features/crypto/data/datasources/crypto_local_data_source.dart';
 import 'package:crypto_tracker/features/crypto/data/datasources/crypto_remote_data_source.dart';
@@ -42,19 +41,19 @@ class CryptoRepositoryImpl implements CryptoRepository {
         parameters,
       );
       var data = cryptoList.map((e) => e.toEntity()).toList();
+
       if (parameters.page == 1) {
         _cryptoLocalDataSource.saveCryptoList(data);
       }
+
       return Data(data);
     } catch (e) {
       var error = ErrorHandler.handleError(e);
-      if (error is TimeoutFailure ||
-          error is ConnectionFailure ||
-          error is NoInternetFailure) {
-        return Data(await _cryptoLocalDataSource.getCryptoList());
-      } else {
-        return Error(error);
-      }
+      var data =
+          parameters.page == 1
+              ? await _cryptoLocalDataSource.getCryptoList()
+              : null;
+      return Error(error, data: data);
     }
   }
 }

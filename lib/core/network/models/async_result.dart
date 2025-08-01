@@ -10,6 +10,8 @@ class Data<T> extends AsyncResult<T> {
 }
 
 class Error<T> extends AsyncResult<T> {
+  final T? data;
+
   final Failure error;
-  Error(this.error);
+  Error(this.error, {this.data});
 }
