@@ -1,6 +1,5 @@
 import 'package:crypto_tracker/features/crypto/presentation/pages/crypto_list/bloc/crypto_bloc.dart';
-import 'package:crypto_tracker/features/crypto/presentation/pages/crypto_wishlist/bloc/crypto_wishlist_bloc.dart';
-import 'package:crypto_tracker/features/crypto/presentation/widgets/fav_button.dart';
+import 'package:crypto_tracker/features/crypto/presentation/widgets/crypto_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,16 +40,7 @@ class _CryptoListTabState extends State<CryptoListTab> {
                     itemCount: state.cryptos.length,
                     itemBuilder: (context, index) {
                       final item = state.cryptos[index];
-                      return ListTile(
-                        title: Text(item.name ?? ''),
-                        trailing: IconButton(
-                          onPressed:
-                              () => context.read<CryptoWishlistBloc>().add(
-                                EditWishlist(cryptoEntity: item),
-                              ),
-                          icon: FavButton(item: item),
-                        ),
-                      );
+                      return CryptoCard(crypto: item);
                     },
                   ),
                 ),

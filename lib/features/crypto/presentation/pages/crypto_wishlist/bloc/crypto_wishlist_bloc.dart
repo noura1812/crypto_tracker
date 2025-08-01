@@ -31,7 +31,12 @@ class CryptoWishlistBloc
         emit(GetCryptoWishListSuccess(cryptos: response.data));
         break;
       case Error():
-        emit(GetCryptoWishListError(error: response.error));
+        // if (response.error is AuthFailure) {
+        //   emit(UnAuthorized());
+        // } else
+        {
+          emit(GetCryptoWishListError(error: response.error));
+        }
         break;
       default:
     }
@@ -76,6 +81,14 @@ class CryptoWishlistBloc
           default:
         }
       }
+    } else if (state is GetCryptoWishListError) {
+      GetCryptoWishListError currentState = state as GetCryptoWishListError;
+
+      if (currentState.error is AuthFailure) {
+        emit(UnAuthorized(time: DateTime.now().microsecondsSinceEpoch));
+      }
+    } else if (state is UnAuthorized) {
+      emit(UnAuthorized(time: DateTime.now().microsecondsSinceEpoch));
     }
   }
 }

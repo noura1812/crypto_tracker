@@ -4,12 +4,12 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter/material.dart';
 
-import '../../common/domain/repository/preferences_repository.dart';
+import '../../common/domain/repository/local_repository.dart';
 import '../../config/constants.dart';
 
 @injectable
 class CustomInterceptor extends Interceptor {
-  final PreferencesRepository preferencesRepository;
+  final LocalRepository preferencesRepository;
 
   CustomInterceptor(this.preferencesRepository);
 

@@ -8,3 +8,11 @@ abstract class AuthState extends Equatable {
 }
 
 class AuthInitial extends AuthState {}
+
+class LoginLoading extends AuthState {}
+
+class LoginSuccess extends AuthState {}
+
+class LoginError extends AuthState {}
+
+class LogoutSuccess extends AuthState {}

@@ -1,4 +1,7 @@
+import 'package:crypto_tracker/core/common/domain/repository/local_repository.dart';
+import 'package:crypto_tracker/core/config/constants.dart';
 import 'package:crypto_tracker/core/network/error/error_handler.dart';
+import 'package:crypto_tracker/core/network/error/failure.dart';
 import 'package:crypto_tracker/core/network/models/async_result.dart';
 import 'package:crypto_tracker/features/crypto/data/datasources/crypto_local_data_source.dart';
 import 'package:crypto_tracker/features/crypto/data/datasources/crypto_remote_data_source.dart';
@@ -12,8 +15,10 @@ import 'package:crypto_tracker/features/crypto/data/mappers/crypto_mapper.dart';
 class CryptoRepositoryImpl implements CryptoRepository {
   final CryptoLocalDataSource _cryptoLocalDataSource;
   final CryptoRemoteDataSource _cryptoRemoteDataSource;
+  final LocalRepository _localRepository;
 
-  CryptoRepositoryImpl({
+  CryptoRepositoryImpl(
+    this._localRepository, {
     required CryptoLocalDataSource cryptoLocalDataSource,
     required CryptoRemoteDataSource cryptoRemoteDataSource,
   }) : _cryptoLocalDataSource = cryptoLocalDataSource,
@@ -21,6 +26,12 @@ class CryptoRepositoryImpl implements CryptoRepository {
   @override
   Future<AsyncResult<void>> editWishlist(String id, {bool add = true}) async {
     try {
+      String? token = await _localRepository.getValueByKey(
+        AppConstants.tokenKey,
+      );
+      if (token == null) {
+        return Error(AuthFailure());
+      }
       if (add) {
         await _cryptoLocalDataSource.addToWishlist(id);
       } else {
@@ -60,6 +71,13 @@ class CryptoRepositoryImpl implements CryptoRepository {
   @override
   Future<AsyncResult<List<CryptoEntity>>> getCryptoWishlist() async {
     try {
+      String? token = await _localRepository.getValueByKey(
+        AppConstants.tokenKey,
+      );
+
+      if (token == null) {
+        return Error(AuthFailure());
+      }
       var data = await _cryptoLocalDataSource.getWishlist();
       return Data(data);
     } catch (e) {

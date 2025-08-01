@@ -31,4 +31,15 @@ class GetCryptoWishListError extends CryptoWishlistState {
   final Failure error;
 
   const GetCryptoWishListError({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
+
+class UnAuthorized extends CryptoWishlistState {
+  final int time;
+
+  const UnAuthorized({required this.time});
+  @override
+  List<Object> get props => [time];
 }

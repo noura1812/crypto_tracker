@@ -10,9 +10,16 @@ class FavButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CryptoWishlistBloc, CryptoWishlistState>(
       builder: (context, state) {
-        return context.read<CryptoWishlistBloc>().isInWishlist(item.id)
-            ? const Icon(Icons.favorite)
-            : const Icon(Icons.favorite_outline);
+        return IconButton(
+          onPressed:
+              () => context.read<CryptoWishlistBloc>().add(
+                EditWishlist(cryptoEntity: item),
+              ),
+          icon:
+              context.read<CryptoWishlistBloc>().isInWishlist(item.id)
+                  ? const Icon(Icons.favorite)
+                  : const Icon(Icons.favorite_outline),
+        );
       },
     );
   }

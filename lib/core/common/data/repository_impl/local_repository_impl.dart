@@ -1,13 +1,13 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/repository/preferences_repository.dart';
+import '../../domain/repository/local_repository.dart';
 
-@LazySingleton(as: PreferencesRepository)
-class PreferencesRepositoryImpl implements PreferencesRepository {
+@LazySingleton(as: LocalRepository)
+class LocalRepositoryImpl implements LocalRepository {
   final FlutterSecureStorage secureStorage;
 
-  PreferencesRepositoryImpl(this.secureStorage);
+  LocalRepositoryImpl(this.secureStorage);
 
   @override
   Future<T?> getValueByKey<T>(String key) async {
