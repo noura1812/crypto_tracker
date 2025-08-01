@@ -38,7 +38,7 @@ class CustomMainButton extends StatelessWidget {
     return Container(
       margin: margin,
       width: width ?? MediaQuery.of(context).size.width,
-      height: height ?? 55.h,
+      height: height ?? 40.h,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: isOutlined ? 0 : null,
@@ -67,7 +67,7 @@ class CustomMainButton extends StatelessWidget {
           backgroundColor:
               isOutlined
                   ? (enabledColor ?? Colors.white)
-                  : (enabledColor ?? AppColors.mainColor),
+                  : (enabledColor ?? AppColors.accentColor),
         ),
         onPressed:
             onPressed == null
@@ -79,7 +79,7 @@ class CustomMainButton extends StatelessWidget {
             child ??
             Text(
               text ?? '',
-              style: CustomTextStyle.styleW400S16black.copyWith(
+              style: CustomTextStyle.styleW400S16white.copyWith(
                 color:
                     textColor ??
                     (isOutlined

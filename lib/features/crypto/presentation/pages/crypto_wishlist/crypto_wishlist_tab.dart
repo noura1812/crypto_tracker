@@ -39,7 +39,7 @@ class _CryptoWishlistTabState extends State<CryptoWishlistTab> {
                   ),
                   Text(
                     'no items in wish list',
-                    style: CustomTextStyle.styleW600S18Black,
+                    style: CustomTextStyle.styleW600S18White,
                   ),
                 ],
               ),
@@ -78,15 +78,18 @@ class UnAuthorizedWishlist extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: 20.h,
         children: [
-          Lottie.asset(
-            AppAssets.login,
-            height: 100.r,
-            width: 100.r,
-            fit: BoxFit.fill,
+          ColorFiltered(
+            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            child: Lottie.asset(
+              AppAssets.login,
+              height: 100.r,
+              width: 100.r,
+              fit: BoxFit.fill,
+            ),
           ),
           Text(
             'to access this feature you need to login',
-            style: CustomTextStyle.styleW600S18Black,
+            style: CustomTextStyle.styleW600S18White,
           ),
           CustomMainButton(
             margin: EdgeInsets.symmetric(horizontal: 100.w),

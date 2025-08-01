@@ -7,44 +7,54 @@ class Themes {
   static const fontFamily = 'Montserrat';
 
   static ThemeData getLightTheme() => ThemeData(
-    dividerTheme: const DividerThemeData(color: AppColors.black),
-    scaffoldBackgroundColor: Colors.white,
-    primaryColor: AppColors.mainColor,
-    colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainColor),
+    useMaterial3: true,
+    scaffoldBackgroundColor: AppColors.black,
+    primaryColor: AppColors.black,
+
+    colorScheme: ColorScheme.dark(
+      primary: AppColors.black,
+      onPrimary: Colors.white,
+    ),
+
+    dividerTheme: const DividerThemeData(color: Colors.white),
+
     appBarTheme: AppBarTheme(
       surfaceTintColor: Colors.transparent,
       toolbarHeight: 60.h,
-      titleTextStyle: CustomTextStyle.styleW600S24Black.copyWith(
+      titleTextStyle: CustomTextStyle.styleW600S24white.copyWith(
         fontSize: 20.sp,
-        color: AppColors.mainColor,
+        color: Colors.white,
       ),
       centerTitle: true,
       elevation: 0.h,
       foregroundColor: Colors.white,
       backgroundColor: Colors.transparent,
-      iconTheme: IconThemeData(color: AppColors.mainColor, size: 24.h),
+      iconTheme: IconThemeData(color: Colors.white, size: 24.h),
     ),
-    useMaterial3: true,
+
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       elevation: 0,
-      backgroundColor: AppColors.lightGray,
-      selectedIconTheme: IconThemeData(size: 25.r, color: AppColors.mainColor),
-      unselectedIconTheme: IconThemeData(size: 25.r, color: Colors.black),
+      backgroundColor: AppColors.black,
+      selectedIconTheme: IconThemeData(
+        size: 25.r,
+        color: AppColors.accentColor,
+      ),
+      unselectedIconTheme: IconThemeData(size: 25.r, color: Colors.grey),
       showSelectedLabels: true,
       showUnselectedLabels: true,
-      selectedLabelStyle: CustomTextStyle.styleW400S16black.copyWith(
+      selectedLabelStyle: CustomTextStyle.styleW400S16white.copyWith(
         fontSize: 10.sp,
         fontWeight: FontWeight.w500,
-        color: AppColors.mainColor,
+        color: AppColors.accentColor,
       ),
-      unselectedLabelStyle: CustomTextStyle.styleW400S16black.copyWith(
-        fontWeight: FontWeight.w500,
-        color: Colors.black,
+      unselectedLabelStyle: CustomTextStyle.styleW400S16white.copyWith(
         fontSize: 10.sp,
+        fontWeight: FontWeight.w500,
+        color: Colors.grey,
       ),
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: AppColors.mainColor,
-      unselectedItemColor: Colors.black,
+      selectedItemColor: AppColors.accentColor,
+      unselectedItemColor: Colors.grey,
     ),
   );
 }

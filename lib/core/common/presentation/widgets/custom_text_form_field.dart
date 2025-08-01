@@ -110,13 +110,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   padding: const EdgeInsets.only(bottom: 5.0),
                   child: Text(
                     widget.label!,
-                    style: CustomTextStyle.styleW500S14Black,
+                    style: CustomTextStyle.styleW500S14white,
                   ),
                 ),
                 if (widget.star)
                   Text(
                     '*',
-                    style: CustomTextStyle.styleW500S14Black.copyWith(
+                    style: CustomTextStyle.styleW500S14white.copyWith(
                       fontWeight: FontWeight.w600,
                       color: Colors.red,
                     ),
@@ -153,7 +153,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             textInputAction: TextInputAction.next,
             validator: widget.validator,
             obscureText: obscureText,
-            style: widget.style ?? CustomTextStyle.styleW400S16black,
+            style: widget.style ?? CustomTextStyle.styleW400S16white,
             decoration: InputDecoration(
               isDense: true,
               filled: widget.filled,
@@ -189,14 +189,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 horizontal: 10.w,
               ),
               labelText: widget.labelText,
-              labelStyle: CustomTextStyle.styleW400S16black.copyWith(
+              labelStyle: CustomTextStyle.styleW400S16white.copyWith(
                 color: widget.labelColor ?? Colors.black,
                 fontSize: 15.sp,
               ),
               hintText: widget.hintText,
               hintStyle:
                   widget.hintStyle ??
-                  CustomTextStyle.styleW400S16black.copyWith(
+                  CustomTextStyle.styleW400S16white.copyWith(
                     color: Colors.grey,
                     fontSize: 14.sp,
                   ),
@@ -209,15 +209,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 ),
               ),
               //   errorMaxLines: 3,
-              errorStyle: CustomTextStyle.styleW400S16black.copyWith(
+              errorStyle: CustomTextStyle.styleW400S16white.copyWith(
                 color: Colors.red,
                 fontSize: 10.sp,
               ),
               focusedBorder: formBorder().copyWith(
                 borderSide: BorderSide(
-                  color:
-                      widget.borderColor ??
-                      Theme.of(context).colorScheme.primary,
+                  color: widget.borderColor ?? AppColors.accentColor,
                 ),
               ),
               focusedErrorBorder: formBorder().copyWith(

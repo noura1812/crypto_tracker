@@ -30,7 +30,7 @@ class _LoginSheetState extends State<LoginSheet> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Login', style: CustomTextStyle.styleW700S18Black),
+            Text('Login', style: CustomTextStyle.styleW700S18White),
             SizedBox(height: 20.h),
             CustomTextFormField(
               hintText: 'Email',

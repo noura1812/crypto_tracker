@@ -6,13 +6,13 @@ class AppColors {
   static const Color lightGray = Color(0xffE6E9EC); //E6E9EC
   static const Color cardColor = Color(0xffF5F5F5);
   static const Color black = Color(0xff0F1828);
-  static const Color mainColor = Color(0xff2242A2); //##2242A2
+  static const Color mainColor = Color.fromRGBO(11, 16, 28, 1); //##2242A2
 
   static const Color gray300 = Color(0xffCDCAD9);
   static const Color gray400 = Color(0xffA7A3B3);
   static const Color gray500 = Color(0xff757281); // Lightest shade
   static const Color gray700 = Color(0x1ADFDFDF);
-
+  static const Color accentColor = Color(0xFFFFD700);
   static const Color darkGray = Color(0xff9B9B9B);
   static const Color gray = Color(0xff9CA3AF);
   static const Color secBgColor = Color(0xffF6F6F7);

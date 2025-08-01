@@ -72,7 +72,7 @@ class CustomShadowButton extends StatelessWidget {
                 width: 60.w,
                 child: Text(
                   label!,
-                  style: CustomTextStyle.styleW600S14Black.copyWith(
+                  style: CustomTextStyle.styleW600S14White.copyWith(
                     color: AppColors.mainColor,
                     fontSize: 12.sp,
                     fontWeight: FontWeight.normal,
