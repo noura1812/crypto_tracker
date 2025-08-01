@@ -1,4 +1,5 @@
 import 'package:crypto_tracker/app/di.dart';
+import 'package:crypto_tracker/core/config/routes.dart';
 import 'package:crypto_tracker/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:crypto_tracker/features/auth/presentation/pages/login_sheet.dart';
 import 'package:crypto_tracker/features/crypto/presentation/pages/crypto_list/bloc/crypto_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:crypto_tracker/features/crypto/presentation/pages/crypto_wishlis
 import 'package:crypto_tracker/features/crypto/presentation/pages/crypto_wishlist/crypto_wishlist_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class MainLayerPage extends StatefulWidget {
   const MainLayerPage({super.key});
@@ -26,6 +28,11 @@ class _MainLayerPageState extends State<MainLayerPage> {
       child: Scaffold(
         appBar: AppBar(
           actions: [
+            IconButton(
+              onPressed: () => context.pushNamed(Routes.searchPage),
+              icon: Icon(Icons.search),
+            ),
+
             BlocBuilder<AuthBloc, AuthState>(
               builder: (context, state) {
                 return state is LoginSuccess

@@ -24,7 +24,7 @@ import '../features/auth/domain/repositories/auth_repository.dart' as _i10;
 import '../features/auth/domain/usecases/check_auth_use_case.dart' as _i12;
 import '../features/auth/domain/usecases/login_use_case.dart' as _i21;
 import '../features/auth/domain/usecases/logout_use_case.dart' as _i22;
-import '../features/auth/presentation/bloc/auth_bloc.dart' as _i23;
+import '../features/auth/presentation/bloc/auth_bloc.dart' as _i24;
 import '../features/crypto/data/datasources/crypto_local_data_source.dart'
     as _i13;
 import '../features/crypto/data/datasources/crypto_remote_data_source.dart'
@@ -38,11 +38,14 @@ import '../features/crypto/domain/usecases/get_crypto_list_use_case.dart'
     as _i19;
 import '../features/crypto/domain/usecases/get_crypto_wish_list_usecase.dart'
     as _i20;
+import '../features/crypto/domain/usecases/search_use_case.dart' as _i23;
 import '../features/crypto/presentation/pages/crypto_list/bloc/crypto_bloc.dart'
-    as _i24;
-import '../features/crypto/presentation/pages/crypto_wishlist/bloc/crypto_wishlist_bloc.dart'
     as _i25;
-import 'di.dart' as _i26;
+import '../features/crypto/presentation/pages/crypto_wishlist/bloc/crypto_wishlist_bloc.dart'
+    as _i26;
+import '../features/crypto/presentation/pages/search/bloc/search_bloc.dart'
+    as _i27;
+import 'di.dart' as _i28;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -94,19 +97,23 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i21.LoginUseCase(gh<_i10.AuthRepository>()));
     gh.factory<_i22.LogoutUseCase>(
         () => _i22.LogoutUseCase(gh<_i10.AuthRepository>()));
-    gh.lazySingleton<_i23.AuthBloc>(() => _i23.AuthBloc(
+    gh.factory<_i23.SearchUseCase>(
+        () => _i23.SearchUseCase(gh<_i15.CryptoRepository>()));
+    gh.lazySingleton<_i24.AuthBloc>(() => _i24.AuthBloc(
           gh<_i21.LoginUseCase>(),
           gh<_i22.LogoutUseCase>(),
           gh<_i12.CheckAuthUseCase>(),
         ));
-    gh.factory<_i24.CryptoBloc>(
-        () => _i24.CryptoBloc(gh<_i19.GetCryptoListUseCase>()));
-    gh.lazySingleton<_i25.CryptoWishlistBloc>(() => _i25.CryptoWishlistBloc(
+    gh.factory<_i25.CryptoBloc>(
+        () => _i25.CryptoBloc(gh<_i19.GetCryptoListUseCase>()));
+    gh.lazySingleton<_i26.CryptoWishlistBloc>(() => _i26.CryptoWishlistBloc(
           gh<_i20.GetCryptoWishListUseCase>(),
           gh<_i18.EditWishListUseCase>(),
         ));
+    gh.factory<_i27.SearchBloc>(
+        () => _i27.SearchBloc(gh<_i23.SearchUseCase>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i26.RegisterModule {}
+class _$RegisterModule extends _i28.RegisterModule {}

@@ -1,3 +1,4 @@
+import 'package:crypto_tracker/features/crypto/presentation/pages/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -27,6 +28,15 @@ final router = GoRouter(
           (BuildContext context, GoRouterState state) => MaterialPage<void>(
             key: state.pageKey,
             child: const MainLayerPage(),
+          ),
+    ),
+    GoRoute(
+      path: Routes.searchPage,
+      name: Routes.searchPage,
+      pageBuilder:
+          (BuildContext context, GoRouterState state) => MaterialPage<void>(
+            key: state.pageKey,
+            child: const SearchScreen(),
           ),
     ),
   ],

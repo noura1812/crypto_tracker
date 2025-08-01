@@ -1,4 +1,5 @@
 import 'package:crypto_tracker/core/network/models/async_result.dart';
+import 'package:crypto_tracker/features/crypto/data/models/search_response.dart';
 import 'package:crypto_tracker/features/crypto/domain/entities/crypto_entity.dart';
 import 'package:crypto_tracker/features/crypto/domain/entities/crypto_parameters/crypto_parameters.dart';
 
@@ -7,5 +8,6 @@ abstract class CryptoRepository {
     CryptoParameters parameters,
   );
   Future<AsyncResult<List<CryptoEntity>>> getCryptoWishlist();
+  Future<AsyncResult<SearchResponse>> search(String text);
   Future<AsyncResult<void>> editWishlist(String id, {bool add = true});
 }

@@ -5,6 +5,7 @@ import 'package:crypto_tracker/core/network/error/failure.dart';
 import 'package:crypto_tracker/core/network/models/async_result.dart';
 import 'package:crypto_tracker/features/crypto/data/datasources/crypto_local_data_source.dart';
 import 'package:crypto_tracker/features/crypto/data/datasources/crypto_remote_data_source.dart';
+import 'package:crypto_tracker/features/crypto/data/models/search_response.dart';
 import 'package:crypto_tracker/features/crypto/domain/entities/crypto_entity.dart';
 import 'package:crypto_tracker/features/crypto/domain/entities/crypto_parameters/crypto_parameters.dart';
 import 'package:crypto_tracker/features/crypto/domain/repositories/crypto_repository.dart';
@@ -80,6 +81,16 @@ class CryptoRepositoryImpl implements CryptoRepository {
       }
       var data = await _cryptoLocalDataSource.getWishlist();
       return Data(data);
+    } catch (e) {
+      return Error(ErrorHandler.handleError(e));
+    }
+  }
+
+  @override
+  Future<AsyncResult<SearchResponse>> search(String text) async {
+    try {
+      var response = await _cryptoRemoteDataSource.search(text);
+      return Data(response);
     } catch (e) {
       return Error(ErrorHandler.handleError(e));
     }

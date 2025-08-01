@@ -1,3 +1,4 @@
+import 'package:crypto_tracker/core/config/colors.dart';
 import 'package:crypto_tracker/features/crypto/domain/entities/crypto_entity.dart';
 import 'package:crypto_tracker/features/crypto/presentation/pages/crypto_wishlist/bloc/crypto_wishlist_bloc.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class FavButton extends StatelessWidget {
               ),
           icon:
               context.read<CryptoWishlistBloc>().isInWishlist(item.id)
-                  ? const Icon(Icons.favorite)
+                  ? const Icon(Icons.favorite, color: AppColors.accentColor)
                   : const Icon(Icons.favorite_outline),
         );
       },

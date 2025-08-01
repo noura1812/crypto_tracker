@@ -1,7 +1,8 @@
+import 'package:crypto_tracker/core/config/colors.dart';
+import 'package:crypto_tracker/core/config/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/network/error/failure.dart';
-import '../../../../extensions/style_extensions.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   const CustomErrorWidget({
@@ -21,23 +22,23 @@ class CustomErrorWidget extends StatelessWidget {
           Text(
             error.message.toString(),
             textAlign: TextAlign.center,
-            style: context.theme.textTheme.titleSmall!.copyWith(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
-            ),
+            style: CustomTextStyle.styleW600S18White,
           ),
           SizedBox(height: 20.h),
-          FilledButton(
+          OutlinedButton(
+            style: OutlinedButton.styleFrom(
+              side: BorderSide(color: AppColors.accentColor, width: 1.w),
+            ),
             onPressed: () {
               refresh();
             },
-            child: Text(
-              'tryAgain',
-              style: context.theme.textTheme.titleSmall!.copyWith(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.normal,
-                color: Colors.white,
-              ),
+            child: Row(
+              spacing: 10.w,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.refresh, color: AppColors.accentColor),
+                Text('tryAgain', style: CustomTextStyle.styleW400S16white),
+              ],
             ),
           ),
         ],
