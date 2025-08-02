@@ -51,14 +51,6 @@ A Flutter application for tracking cryptocurrency prices with secure authenticat
 | Local Storage    | `isar`, `flutter_secure_storage` |
 | State Management | `flutter_bloc`                   |
 
-## Architecture
-
-lib/
-├── core/
-├── data/
-├── domain/
-└── presentation/
-
 ## Getting Started
 
 1. Clone the repository
@@ -92,4 +84,4 @@ lib/
 
 ## Contributors
 
-Noura
+ENG.Noura
