@@ -149,7 +149,10 @@ class CategoriesTab extends StatelessWidget {
             final item = categories[index];
             return Card.outlined(
               child: Center(
-                child: Text(item.name ?? '', textAlign: TextAlign.center),
+                child: Padding(
+                  padding: EdgeInsets.all(5.r),
+                  child: Text(item.name ?? '', textAlign: TextAlign.center),
+                ),
               ),
             );
           },

@@ -1,4 +1,4 @@
-import 'package:crypto_tracker/core/common/presentation/widgets/customButtons/custom_elevated_buttons.dart';
+import 'package:crypto_tracker/core/common/presentation/widgets/customButtons/custom_main_buttons.dart';
 import 'package:crypto_tracker/core/config/assets.dart';
 import 'package:crypto_tracker/core/config/text_styles.dart';
 import 'package:crypto_tracker/core/network/error/failure.dart';

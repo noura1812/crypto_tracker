@@ -11,7 +11,6 @@ class AuthError implements Exception {
 
 class ErrorHandler implements Exception {
   static Failure handleError(dynamic error) {
-    print('XXXXXX $error');
     if (error is Failure) {
       return error;
     } else if (error is AuthError) {

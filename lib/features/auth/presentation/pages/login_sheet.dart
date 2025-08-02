@@ -1,5 +1,5 @@
 import 'package:crypto_tracker/app/di.dart';
-import 'package:crypto_tracker/core/common/presentation/widgets/customButtons/custom_elevated_buttons.dart';
+import 'package:crypto_tracker/core/common/presentation/widgets/customButtons/custom_main_buttons.dart';
 import 'package:crypto_tracker/core/common/presentation/widgets/custom_text_form_field.dart';
 import 'package:crypto_tracker/core/config/text_form_validations.dart';
 import 'package:crypto_tracker/core/config/text_styles.dart';

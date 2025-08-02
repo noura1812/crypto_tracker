@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 
@@ -40,16 +39,6 @@ class MockInterceptor extends Interceptor {
 
       return handler.resolve(response);
     } catch (e) {
-      if (kDebugMode) {
-        debugPrint('MockError---->$e');
-      }
-      // response = Response(
-      //   data: responseData,
-      //   statusCode: 404,
-      //   requestOptions: options,
-      // );
-      // return handler
-      //     .reject(DioError(requestOptions: options, response: response));
       return handler.next(options);
     }
   }
