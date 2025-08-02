@@ -25,73 +25,85 @@ class _LoginSheetState extends State<LoginSheet> {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Login',
-              style: CustomTextStyle.styleW700S18White,
-            ), //TODO:localization
-            SizedBox(height: 20.h),
-            CustomTextFormField(
-              hintText: 'Email', //TODO:localization
-              controller: emailController,
-              validator: (input) {
-                if (!TextFormValidations.isValidEmail(input)) {
-                  return 'Invalid email'; //TODO:localization
-                }
-                return null;
-              },
-            ),
-            CustomTextFormField(
-              hintText: 'Password', //TODO:localization
-              password: true,
-              controller: passwordController,
-              validator: (input) {
-                if (TextFormValidations.emptyField(input)) {
-                  return 'Invalid password'; //TODO:localization
-                }
-                return null;
-              },
-            ),
-            SizedBox(height: 20.h),
-            MultiBlocProvider(
-              providers: [
-                BlocProvider.value(value: getIt<CryptoWishlistBloc>()),
-                BlocProvider.value(value: getIt<AuthBloc>()),
-              ],
-              child: BlocConsumer<AuthBloc, AuthState>(
-                listener: (context, state) {
-                  if (state is LoginSuccess) {
-                    context.read<CryptoWishlistBloc>().add(GetCryptoWishList());
-                    Navigator.pop(context);
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Login',
+                style: CustomTextStyle.styleW700S18White,
+              ), //TODO:localization
+              SizedBox(height: 20.h),
+              CustomTextFormField(
+                hintText: 'Email', //TODO:localization
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+                validator: (input) {
+                  if (!TextFormValidations.isValidEmail(input)) {
+                    return 'Invalid email'; //TODO:localization
                   }
+                  return null;
                 },
-                builder:
-                    (BuildContext context, AuthState state) => CustomMainButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          context.read<AuthBloc>().add(
-                            LoginEvent(
-                              email: emailController.text,
-                              password: passwordController.text,
-                            ),
-                          );
-                        }
-                      },
-                      text: 'Login', //TODO:localization
-                      child:
-                          state is LoginLoading
-                              ? const CircularProgressIndicator(
-                                color: Colors.white,
-                              )
-                              : null,
-                    ),
               ),
-            ),
-          ],
+              CustomTextFormField(
+                hintText: 'Password', //TODO:localization
+                password: true,
+                controller: passwordController,
+                validator: (input) {
+                  if (TextFormValidations.emptyField(input)) {
+                    return 'Invalid password'; //TODO:localization
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 20.h),
+              MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(value: getIt<CryptoWishlistBloc>()),
+                  BlocProvider.value(value: getIt<AuthBloc>()),
+                ],
+                child: BlocConsumer<AuthBloc, AuthState>(
+                  listener: (context, state) {
+                    if (state is LoginSuccess) {
+                      context.read<CryptoWishlistBloc>().add(
+                        GetCryptoWishList(),
+                      );
+                      Navigator.pop(context);
+                    }
+                  },
+                  builder:
+                      (BuildContext context, AuthState state) =>
+                          CustomMainButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                context.read<AuthBloc>().add(
+                                  LoginEvent(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  ),
+                                );
+                              }
+                            },
+                            text: 'Login', //TODO:localization
+                            child:
+                                state is LoginLoading
+                                    ? Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: const CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                    : null,
+                          ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

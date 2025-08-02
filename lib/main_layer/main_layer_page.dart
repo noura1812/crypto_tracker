@@ -37,7 +37,7 @@ class _MainLayerPageState extends State<MainLayerPage> {
               builder: (context, state) {
                 return state is LoginSuccess
                     ? IconButton(
-                      icon: const Icon(Icons.logout),
+                      icon: const Icon(Icons.logout, color: Colors.red),
                       onPressed: () {
                         getIt<AuthBloc>().add(LogoutEvent());
                       },
@@ -64,6 +64,8 @@ class _MainLayerPageState extends State<MainLayerPage> {
                 listener: (BuildContext context, CryptoWishlistState state) {
                   if (state is UnAuthorized) {
                     showModalBottomSheet(
+                      isScrollControlled: true,
+
                       context: context,
                       builder: (BuildContext context) {
                         return LoginSheet();

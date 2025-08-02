@@ -33,7 +33,7 @@ class _CryptoWishlistTabState extends State<CryptoWishlistTab> {
                 alignment: Alignment.bottomCenter,
 
                 children: [
-                  LottieBuilder.asset(
+                  Lottie.asset(
                     AppAssets.emptyWishlist,
                     height: 300.r,
                     width: 300.r,
@@ -90,13 +90,14 @@ class UnAuthorizedWishlist extends StatelessWidget {
             ),
           ),
           Text(
-            'to access this feature you need to login', //TODO:localization
+            'To access this feature you need to login.', //TODO:localization
             style: CustomTextStyle.styleW600S18White,
           ),
           CustomMainButton(
             margin: EdgeInsets.symmetric(horizontal: 100.w),
             onPressed: () {
               showModalBottomSheet(
+                isScrollControlled: true,
                 context: context,
                 builder: (BuildContext context) {
                   return LoginSheet();

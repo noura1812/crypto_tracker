@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:crypto_tracker/app/di.dart';
 import 'package:crypto_tracker/core/common/presentation/widgets/custom_text_form_field.dart';
 import 'package:crypto_tracker/core/common/presentation/widgets/networkImage/network_image.dart';
+import 'package:crypto_tracker/core/common/presentation/widgets/networkWidgets/custom_empty_list.dart';
 import 'package:crypto_tracker/core/common/presentation/widgets/networkWidgets/error_widget.dart';
 import 'package:crypto_tracker/core/config/colors.dart';
 import 'package:crypto_tracker/core/config/text_styles.dart';
@@ -79,42 +80,50 @@ class _SearchScreenState extends State<SearchScreen>
             isScrollable: true,
           ),
         ),
-        body: BlocBuilder<SearchBloc, SearchState>(
-          builder: (context, state) {
-            if (state is SearchLoading) {
-              return const Center(
-                child: CircularProgressIndicator(color: Colors.white),
-              );
-            } else if (state is SearchFailure) {
-              return CustomErrorWidget(
-                error: state.failure,
-                refresh: () {
-                  searchBloc.add(OnSearchEvent(searchController.text));
-                },
-              );
-            } else if (state is SearchSuccess) {
-              return TabBarView(
-                controller: _tabController,
-                children: [
-                  // Coins Tab
-                  CoinsTab(coins: state.searchResponse.coins ?? []),
-                  // Exchanges Tab
-                  ExchangesTab(exchanges: state.searchResponse.exchanges ?? []),
+        body: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: BlocBuilder<SearchBloc, SearchState>(
+            builder: (context, state) {
+              if (state is SearchLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(color: Colors.white),
+                );
+              } else if (state is SearchFailure) {
+                return CustomErrorWidget(
+                  error: state.failure,
+                  refresh: () {
+                    searchBloc.add(OnSearchEvent(searchController.text));
+                  },
+                );
+              } else if (state is SearchSuccess) {
+                return Padding(
+                  padding: EdgeInsets.all(10.r),
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      // Coins Tab
+                      CoinsTab(coins: state.searchResponse.coins ?? []),
+                      // Exchanges Tab
+                      ExchangesTab(
+                        exchanges: state.searchResponse.exchanges ?? [],
+                      ),
 
-                  // Categories Tab
-                  CategoriesTab(
-                    categories: state.searchResponse.categories ?? [],
+                      // Categories Tab
+                      CategoriesTab(
+                        categories: state.searchResponse.categories ?? [],
+                      ),
+                      // NFTs Tab
+                      NftsTab(nfts: state.searchResponse.nfts ?? []),
+                    ],
                   ),
-                  // NFTs Tab
-                  NftsTab(nfts: state.searchResponse.nfts ?? []),
-                ],
-              );
-            }
+                );
+              }
 
-            return const Center(
-              child: Text('Start typing to search'),
-            ); //TODO:localization
-          },
+              return const Center(
+                child: Text('Start typing to search'),
+              ); //TODO:localization
+            },
+          ),
         ),
       ),
     );
@@ -126,23 +135,25 @@ class CategoriesTab extends StatelessWidget {
   final List<Categories> categories;
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-        childAspectRatio: 1.2,
-      ),
-      itemCount: categories.length,
-      itemBuilder: (context, index) {
-        final item = categories[index];
-        return Card.outlined(
-          child: Center(
-            child: Text(item.name ?? '', textAlign: TextAlign.center),
+    return categories.isEmpty
+        ? CustomEmptyList(title: 'No categories found') //TODO:localization
+        : GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childAspectRatio: 1.2,
           ),
+          itemCount: categories.length,
+          itemBuilder: (context, index) {
+            final item = categories[index];
+            return Card.outlined(
+              child: Center(
+                child: Text(item.name ?? '', textAlign: TextAlign.center),
+              ),
+            );
+          },
         );
-      },
-    );
   }
 }
 
@@ -152,7 +163,7 @@ class CoinsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return coins.isEmpty
-        ? _buildEmptyState('No Coins found') //TODO:localization
+        ? CustomEmptyList(title: 'No Coins found') //TODO:localization
         : GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -184,7 +195,7 @@ class ExchangesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return exchanges.isEmpty
-        ? _buildEmptyState('No Exchanges found') //TODO:localization
+        ? CustomEmptyList(title: 'No Exchanges found') //TODO:localization
         : ListView.builder(
           itemCount: exchanges.length,
           itemBuilder: (context, index) {
@@ -213,7 +224,7 @@ class NftsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return nfts.isEmpty
-        ? _buildEmptyState('No NFTs found') //TODO:localization
+        ? CustomEmptyList(title: 'No NFTs found') //TODO:localization
         : ListView.builder(
           itemCount: nfts.length,
           itemBuilder: (context, index) {
@@ -231,6 +242,20 @@ class NftsTab extends StatelessWidget {
   }
 }
 
-Widget _buildEmptyState(String message) {
-  return Center(child: Text(message, style: TextStyle(fontSize: 16.sp)));
-}
+// Widget _buildEmptyState(String message) {
+//   return Center(
+//     child: Column(
+//       spacing: 10.h,
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         Lottie.asset(
+//           AppAssets.emptyBox,
+//           height: 100.r,
+//           width: 100.r,
+//           fit: BoxFit.fill,
+//         ),
+//         Text(message, style: TextStyle(fontSize: 16.sp)),
+//       ],
+//     ),
+//   );
+// }

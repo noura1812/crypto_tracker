@@ -11,6 +11,7 @@ class AppAssets {
   /// lottie
   static const login = 'assets/lottie/login.json';
   static const emptyWishlist = 'assets/lottie/empty_wishList.json';
+  static const emptyBox = 'assets/lottie/empty_box.json';
 
   /// svg
 }
