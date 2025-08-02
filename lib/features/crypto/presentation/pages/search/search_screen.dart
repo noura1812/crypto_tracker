@@ -63,7 +63,7 @@ class _SearchScreenState extends State<SearchScreen>
               padding: EdgeInsets.all(10.r),
               child: Icon(Icons.search, size: 25.r),
             ),
-            hintText: 'Search...',
+            hintText: 'Search...', //TODO:localization
           ),
           bottom: TabBar(
             controller: _tabController,
@@ -71,8 +71,8 @@ class _SearchScreenState extends State<SearchScreen>
             labelStyle: CustomTextStyle.styleW700S14White,
             unselectedLabelStyle: CustomTextStyle.styleW600S14White,
             tabs: const [
-              Tab(text: 'Coins'),
-              Tab(text: 'Exchanges'),
+              Tab(text: 'Coins'), //TODO:localization
+              Tab(text: 'Exchanges'), //TODO:localization
               Tab(text: 'Categories'),
               Tab(text: 'NFTs'),
             ],
@@ -82,7 +82,9 @@ class _SearchScreenState extends State<SearchScreen>
         body: BlocBuilder<SearchBloc, SearchState>(
           builder: (context, state) {
             if (state is SearchLoading) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                child: CircularProgressIndicator(color: Colors.white),
+              );
             } else if (state is SearchFailure) {
               return CustomErrorWidget(
                 error: state.failure,
@@ -109,7 +111,9 @@ class _SearchScreenState extends State<SearchScreen>
               );
             }
 
-            return const Center(child: Text('Start typing to search'));
+            return const Center(
+              child: Text('Start typing to search'),
+            ); //TODO:localization
           },
         ),
       ),
@@ -148,7 +152,7 @@ class CoinsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return coins.isEmpty
-        ? _buildEmptyState('No Coins found')
+        ? _buildEmptyState('No Coins found') //TODO:localization
         : GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -180,7 +184,7 @@ class ExchangesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return exchanges.isEmpty
-        ? _buildEmptyState('No Exchanges found')
+        ? _buildEmptyState('No Exchanges found') //TODO:localization
         : ListView.builder(
           itemCount: exchanges.length,
           itemBuilder: (context, index) {
@@ -209,7 +213,7 @@ class NftsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return nfts.isEmpty
-        ? _buildEmptyState('No NFTs found')
+        ? _buildEmptyState('No NFTs found') //TODO:localization
         : ListView.builder(
           itemCount: nfts.length,
           itemBuilder: (context, index) {

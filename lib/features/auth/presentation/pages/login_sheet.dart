@@ -30,25 +30,28 @@ class _LoginSheetState extends State<LoginSheet> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Login', style: CustomTextStyle.styleW700S18White),
+            Text(
+              'Login',
+              style: CustomTextStyle.styleW700S18White,
+            ), //TODO:localization
             SizedBox(height: 20.h),
             CustomTextFormField(
-              hintText: 'Email',
+              hintText: 'Email', //TODO:localization
               controller: emailController,
               validator: (input) {
                 if (!TextFormValidations.isValidEmail(input)) {
-                  return 'Invalid email';
+                  return 'Invalid email'; //TODO:localization
                 }
                 return null;
               },
             ),
             CustomTextFormField(
-              hintText: 'Password',
+              hintText: 'Password', //TODO:localization
               password: true,
               controller: passwordController,
               validator: (input) {
                 if (TextFormValidations.emptyField(input)) {
-                  return 'Invalid password';
+                  return 'Invalid password'; //TODO:localization
                 }
                 return null;
               },
@@ -78,10 +81,12 @@ class _LoginSheetState extends State<LoginSheet> {
                           );
                         }
                       },
-                      text: 'Login',
+                      text: 'Login', //TODO:localization
                       child:
                           state is LoginLoading
-                              ? const CircularProgressIndicator()
+                              ? const CircularProgressIndicator(
+                                color: Colors.white,
+                              )
                               : null,
                     ),
               ),

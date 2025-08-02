@@ -27,7 +27,7 @@ class CryptoBloc extends Bloc<CryptoEvent, CryptoState> {
     Emitter<CryptoState> emit,
   ) async {
     emit(GetCryptoListLoading());
-
+    _parameters = _parameters.copyWith(page: 1);
     final result = await _getCryptoListUseCase(_parameters);
     switch (result) {
       case Data<List<CryptoEntity>>():
@@ -38,7 +38,7 @@ class CryptoBloc extends Bloc<CryptoEvent, CryptoState> {
           emit(
             GetCryptoListSuccess(
               cryptos: result.data!,
-              errorMessage: result.error.toString(),
+              errorMessage: 'Offline',
             ),
           );
         } else {
@@ -59,7 +59,6 @@ class CryptoBloc extends Bloc<CryptoEvent, CryptoState> {
     if (currentState.cryptos.length < AppConstants.perPage) return;
 
     emit(currentState.copyWith(isLoadingMore: true));
-
     _parameters = _parameters.copyWith(page: _parameters.page + 1);
     final result = await _getCryptoListUseCase(_parameters);
     switch (result) {
@@ -70,12 +69,7 @@ class CryptoBloc extends Bloc<CryptoEvent, CryptoState> {
       case Error():
         _parameters = _parameters.copyWith(page: _parameters.page - 1);
 
-        emit(
-          currentState.copyWith(
-            isLoadingMore: false,
-            errorMessage: result.error.toString(),
-          ),
-        );
+        emit(currentState.copyWith(isLoadingMore: false));
 
         SnackBarHelper.showErrorSnackBar(
           message: 'Error loading more data:\n${result.error.toString()}',

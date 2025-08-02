@@ -23,7 +23,9 @@ class _CryptoWishlistTabState extends State<CryptoWishlistTab> {
     return BlocBuilder<CryptoWishlistBloc, CryptoWishlistState>(
       builder: (context, state) {
         if (state is GetCryptoWishListLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: CircularProgressIndicator(color: Colors.white),
+          );
         } else if (state is GetCryptoWishListSuccess) {
           if (state.cryptos.isEmpty) {
             return Center(
@@ -38,7 +40,7 @@ class _CryptoWishlistTabState extends State<CryptoWishlistTab> {
                     fit: BoxFit.fill,
                   ),
                   Text(
-                    'no items in wish list',
+                    'no items in wish list', //TODO:localization
                     style: CustomTextStyle.styleW600S18White,
                   ),
                 ],
@@ -88,7 +90,7 @@ class UnAuthorizedWishlist extends StatelessWidget {
             ),
           ),
           Text(
-            'to access this feature you need to login',
+            'to access this feature you need to login', //TODO:localization
             style: CustomTextStyle.styleW600S18White,
           ),
           CustomMainButton(
@@ -101,7 +103,7 @@ class UnAuthorizedWishlist extends StatelessWidget {
                 },
               );
             },
-            text: 'Login',
+            text: 'Login', //TODO:localization
           ),
         ],
       ),

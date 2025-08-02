@@ -3,7 +3,6 @@ import 'package:crypto_tracker/features/crypto/domain/entities/crypto_entity.dar
 
 extension CryptoMapper on CryptoResponse {
   CryptoEntity toEntity() {
-    print('------>>>>>');
     return CryptoEntity(
       id: id ?? '',
       name: name ?? '',

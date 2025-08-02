@@ -49,7 +49,9 @@ class CustomImageWidget extends StatelessWidget {
     return SizedBox(
       width: width == null ? null : width! / 2,
       height: height == null ? null : height! / 2,
-      child: const Center(child: CircularProgressIndicator()),
+      child: const Center(
+        child: CircularProgressIndicator(color: Colors.white),
+      ),
     );
   }
 
