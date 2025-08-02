@@ -26,6 +26,8 @@ A Flutter application for tracking cryptocurrency prices with secure authenticat
 - **GoRouter** for declarative routing
 - **Isar** for offline data persistence
 - **BLoC** for state management
+- **Dependency Injection** using `get_it` and `injectable`
+- **Freezed** for immutable crypto parameter models
 
 ## Screenshots
 
@@ -44,18 +46,20 @@ A Flutter application for tracking cryptocurrency prices with secure authenticat
 
 ### Packages Used
 
-| Category         | Packages                         |
-| ---------------- | -------------------------------- |
-| Networking       | `dio`                            |
-| Routing          | `go_router`                      |
-| Local Storage    | `isar`, `flutter_secure_storage` |
-| State Management | `flutter_bloc`                   |
+| Category             | Packages                                    |
+| -------------------- | ------------------------------------------- |
+| Networking           | `dio`                                       |
+| Routing              | `go_router`                                 |
+| Local Storage        | `isar`, `flutter_secure_storage`            |
+| State Management     | `flutter_bloc`                              |
+| Dependency Injection | `get_it`, `injectable`                      |
+| Data Modeling        | `freezed`, `json_serializable`, `equatable` |
 
 ## Getting Started
 
 1. Clone the repository
 2. Run `flutter pub get`
-3. Generate Isar files: `dart run build_runner build`
+3. Generate required files: `dart run build_runner build`
 4. Run `flutter run`
 
 ## Key Features
@@ -84,4 +88,4 @@ A Flutter application for tracking cryptocurrency prices with secure authenticat
 
 ## Contributors
 
-ENG.Noura
+**ENG. Noura**
