@@ -1,91 +1,57 @@
-# Crypto Tracker App
+# Crypto Tracker — Flutter Sample
 
-A Flutter application for tracking cryptocurrency prices with secure authentication, offline support, and comprehensive search functionality.
+A Flutter cryptocurrency-tracking sample with search, a wishlist, local persistence, and mock authentication.
+
+**Scope:** Login is mocked. Real API integration is future work; this project is not presented as a production financial service or a live market-data feed.
 
 ## Features
 
-### Core Functionality
+- Paginated cryptocurrency list
+- Search across coins, categories, exchanges and NFTs
+- Wishlist with a login-gated flow
+- Login bottom sheet with mock authentication
+- Local persistence using Isar
 
-- **Two Main Tabs**:
+## Stack
 
-  - **Crypto List**: Paginated list of cryptocurrencies
-  - **Wishlist**: Saved cryptocurrencies (requires login)
-
-- **Search Functionality**:
-
-  - Unified search across coins, categories, exchanges, and NFTs
-
-- **Authentication**:
-  - Login via bottom sheet
-  - Mock login implementation
-  - Secure token storage using `flutter_secure_storage`
-
-### Technical Highlights
-
-- **Dio** for efficient HTTP requests
-- **GoRouter** for declarative routing
-- **Isar** for offline data persistence
-- **BLoC** for state management
-- **Dependency Injection** using `get_it` and `injectable`
-- **Freezed** for immutable crypto parameter models
+| Area | Packages |
+| --- | --- |
+| State management | flutter_bloc |
+| Networking | dio |
+| Navigation | go_router |
+| Local storage | isar, flutter_secure_storage |
+| Dependency injection | get_it, injectable |
+| Models | freezed, json_serializable, equatable |
 
 ## Screenshots
 
-<div align="center">
-  <h3>Main Interface</h3>
-  <img src="screen_shots/crypto_list_tab.png" width="30%" alt="Crypto List Tab">
-  <img src="screen_shots/disabled_wishlist_tab.png" width="30%" alt="Disabled Wishlist">  
-  <img src="screen_shots/enabled_wishlist_tab.png" width="30%" alt="Enabled Wishlist">
-  
-  <h3>User Flow</h3>
-  <img src="screen_shots/login_bottom_sheet.png" width="45%" alt="Login Bottom Sheet">
-  <img src="screen_shots/search_screen.png" width="45%" alt="Search Screen">
-</div>
-
-## Technical Implementation
-
-### Packages Used
-
-| Category             | Packages                                    |
-| -------------------- | ------------------------------------------- |
-| Networking           | `dio`                                       |
-| Routing              | `go_router`                                 |
-| Local Storage        | `isar`, `flutter_secure_storage`            |
-| State Management     | `flutter_bloc`                              |
-| Dependency Injection | `get_it`, `injectable`                      |
-| Data Modeling        | `freezed`, `json_serializable`, `equatable` |
-
-## Getting Started
-
-1. Clone the repository
-2. Run `flutter pub get`
-3. Generate required files: `dart run build_runner build`
-4. Run `flutter run`
-
-## Key Features
-
-### Crypto List Tab
-
-![Crypto List](screen_shots/crypto_list_tab.png)
-
-- Paginated data loading
-- Real-time price updates
-- Offline-first design
-
-### Authentication Flow
-
+![Crypto list](screen_shots/crypto_list_tab.png)
+![Wishlist](screen_shots/enabled_wishlist_tab.png)
+![Search](screen_shots/search_screen.png)
 ![Login](screen_shots/login_bottom_sheet.png)
 
-- Secure token storage
-- Protected routes
-- Smooth bottom sheet animation
+## Run locally
 
-## Future Enhancements
+Use a Flutter SDK bundling Dart compatible with `^3.7.0`, plus platform tooling for your device. Isar dependencies use the community package host configured in pubspec.yaml.
+
+```sh
+git clone https://github.com/noura1812/crypto_tracker.git
+cd crypto_tracker
+flutter pub get
+dart run build_runner build
+flutter run
+```
+
+## Future work
 
 - Real API integration
 - Portfolio tracking
 - Advanced charting
 
-## Contributors
+## Verification status
 
-**ENG. Noura**
+Build, tests, cache-refresh behavior and live connectivity have not been verified for this documentation update.
+
+## Author
+
+Noura — [GitHub](https://github.com/noura1812)
